@@ -160,7 +160,10 @@ SPIClass SPI1(HSPI);
 
 using namespace concurrency;
 
-volatile static const char slipstreamTZString[] = {USERPREFS_TZ_STRING};
+#ifndef USERPREFS_TZ_STRING
+#define USERPREFS_TZ_STRING "GMT0"
+#endif
+volatile static char slipstreamTZString[] = USERPREFS_TZ_STRING;
 
 // We always create a screen object, but we only init it if we find the hardware
 graphics::Screen *screen = nullptr;
